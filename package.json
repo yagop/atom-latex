@@ -10,8 +10,9 @@
     "miktex"
   ],
   "license": "MIT",
-  "main": "./lib/main",
   "repository": "https://github.com/thomasjo/atom-latex",
+  "main": "./lib/main",
+  "atomTestRunner": "./spec/runner.js",
   "dependencies": {
     "etch": "^0.1.0",
     "fs-plus": "^2.5.0",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
+    "mocha": "^2.4.5",
     "standard": "^5.3.1"
   },
   "standard": {
