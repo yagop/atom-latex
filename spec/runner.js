@@ -2,10 +2,13 @@
 
 import fs from 'fs'
 import path from 'path'
+import chai from 'chai'
 import Mocha from 'mocha'
 
 export default function ({testPaths, buildAtomEnvironment, buildDefaultApplicationDelegate}) {
   const mocha = global.mocha = new Mocha()
+  global.chai = chai
+  global.expect = chai.expect
 
   global.atom = buildAtomEnvironment({
     applicationDelegate: buildDefaultApplicationDelegate(),
@@ -18,7 +21,7 @@ export default function ({testPaths, buildAtomEnvironment, buildDefaultApplicati
   const promise = new Promise((resolve, reject) => {
     testPaths.forEach(testPath => {
       fs.readdirSync(testPath)
-        .filter(file => file.endsWith('.js'))
+        .filter(file => file.endsWith('-spec.js'))
         .forEach(file => mocha.addFile(path.join(testPath, file)))
     })
 
