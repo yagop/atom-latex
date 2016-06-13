@@ -21,25 +21,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
-    "snazzy": "^4.0.0",
-    "semistandard": "^8.0.0"
-  },
-  "semistandard": {
-    "parser": "babel-eslint",
-    "globals": [
-      "atom",
-      "latex",
-      "afterEach",
-      "beforeEach",
-      "describe",
-      "expect",
-      "it",
-      "jasmine",
-      "runs",
-      "spyOn",
-      "waitsFor",
-      "waitsForPromise"
-    ]
+    "eslint": "^2.12.0",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-babel": "^3.2.0"
   },
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
