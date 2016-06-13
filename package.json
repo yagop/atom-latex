@@ -22,9 +22,9 @@
   "devDependencies": {
     "babel-eslint": "^6.0.4",
     "snazzy": "^4.0.0",
-    "standard": "^7.1.0"
+    "semistandard": "^8.0.0"
   },
-  "standard": {
+  "semistandard": {
     "parser": "babel-eslint",
     "globals": [
       "atom",

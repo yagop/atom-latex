@@ -3,7 +3,7 @@
 cd "${BASH_SOURCE%/*}" || exit
 
 echo "Linting package..."
-$(npm bin)/standard --verbose "../lib/**/*.js" | $(npm bin)/snazzy
+$(npm bin)/semistandard --verbose "../lib/**/*.js" | $(npm bin)/snazzy
 
 echo "Linting package specs..."
-$(npm bin)/standard --verbose "../spec/**/*.js" | $(npm bin)/snazzy
+$(npm bin)/semistandard --verbose "../spec/**/*.js" | $(npm bin)/snazzy
