@@ -12,4 +12,8 @@
     "atom": false,
     "latex": false,
   },
+  "rules": {
+    "one-var": [2, { "uninitialized": "always", "initialized": "never" }],
+    "one-var-declaration-per-line": [2, "initializations"],
+  }
 }
