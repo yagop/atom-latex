@@ -21,11 +21,11 @@
     "array-bracket-spacing": 0,
     "arrow-parens": 0,
     "object-curly-spacing": 0,
-
     "babel/array-bracket-spacing": [2, "never"],
     "babel/arrow-parens": [2, "as-needed"],
     "babel/object-curly-spacing": [2, "always"],
+    "babel/no-await-in-loop": 2,
 
-    "babel/no-await-in-loop": 2
+    "import/no-unresolved": [2, { "ignore": ["atom"] }]
   }
 }
