@@ -49,7 +49,7 @@ describe('LogParser', () => {
         logPosition: [196, 0],
         filePath: 'errors.tex',
         lineNumber: 10,
-        message: '\\begin{gather*} on input line 8 ended by \\end{gather}'
+        message: '\\begin{gather*} on input line 8 ended by \\end{gather}',
       });
     });
   });

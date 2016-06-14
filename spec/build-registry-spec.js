@@ -1,9 +1,9 @@
 'use babel';
 
-import helpers from './spec-helpers';
 import path from 'path';
 import BuilderRegistry from '../lib/builder-registry';
-import {NullBuilder} from './stubs';
+import helpers from './spec-helpers';
+import { NullBuilder } from './stubs';
 
 describe('BuilderRegistry', () => {
   let registry, fixturesPath, filePath;
@@ -20,12 +20,12 @@ describe('BuilderRegistry', () => {
     });
 
     it('returns null when no builders are associated with the given file', () => {
-      const filePath = path.join('foo', 'quux.txt');
+      filePath = path.join('foo', 'quux.txt');
       expect(registry.getBuilder(filePath)).toBeNull();
     });
 
     it('returns the configured builder when given a regular .tex file', () => {
-      const filePath = path.join('foo', 'bar.tex');
+      filePath = path.join('foo', 'bar.tex');
       expect(registry.getBuilder(filePath).name).toEqual('LatexmkBuilder');
 
       atom.config.set('latex.builder', 'texify');

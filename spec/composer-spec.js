@@ -1,10 +1,10 @@
 'use babel';
 
-import './spec-bootstrap';
-import fs from 'fs-plus';
-import _ from 'lodash';
 import path from 'path';
+import _ from 'lodash';
+import fs from 'fs-plus';
 import Composer from '../lib/composer';
+import './spec-bootstrap';
 
 describe('Composer', () => {
   let composer;
@@ -17,13 +17,10 @@ describe('Composer', () => {
   describe('build', () => {
     let editor, builder;
 
-    function initializeSpies (filePath, statusCode = 0) {
+    function initializeSpies(filePath, statusCode = 0) {
       editor = jasmine.createSpyObj('MockEditor', ['save', 'isModified']);
       spyOn(composer, 'resolveRootFilePath').andReturn(filePath);
-      spyOn(composer, 'getEditorDetails').andReturn({
-        editor: editor,
-        filePath: filePath
-      });
+      spyOn(composer, 'getEditorDetails').andReturn({ editor, filePath });
 
       builder = jasmine.createSpyObj('MockBuilder', ['run', 'constructArgs', 'parseLogFile']);
       builder.run.andCallFake(() => {
@@ -45,9 +42,9 @@ describe('Composer', () => {
       initializeSpies(null);
 
       let result = 'aaaaaaaaaaaa';
-      waitsForPromise(() => {
-        return composer.build().catch(r => { result = r; });
-      });
+      waitsForPromise(() =>
+        composer.build().catch(r => { result = r; })
+      );
 
       runs(() => {
         expect(result).toBe(false);
@@ -61,9 +58,9 @@ describe('Composer', () => {
       composer.getBuilder.andReturn(null);
 
       let result;
-      waitsForPromise(() => {
-        return composer.build().catch(r => { result = r; });
-      });
+      waitsForPromise(() =>
+        composer.build().catch(r => { result = r; })
+      );
 
       runs(() => {
         expect(result).toBe(false);
@@ -79,12 +76,12 @@ describe('Composer', () => {
       builder.parseLogFile.andReturn({
         outputFilePath: 'file.pdf',
         errors: [],
-        warnings: []
+        warnings: [],
       });
 
-      waitsForPromise(() => {
-        return composer.build();
-      });
+      waitsForPromise(() =>
+        composer.build()
+      );
 
       runs(() => {
         expect(editor.isModified).toHaveBeenCalled();
@@ -96,15 +93,15 @@ describe('Composer', () => {
       const result = {
         outputFilePath: 'file.pdf',
         errors: [],
-        warnings: []
+        warnings: [],
       };
 
       initializeSpies('file.tex');
       builder.parseLogFile.andReturn(result);
 
-      waitsForPromise(() => {
-        return composer.build();
-      });
+      waitsForPromise(() =>
+        composer.build()
+      );
 
       runs(() => {
         expect(composer.showResult).toHaveBeenCalledWith(result);
@@ -117,12 +114,12 @@ describe('Composer', () => {
       builder.parseLogFile.andReturn({
         outputFilePath: null,
         errors: [],
-        warnings: []
+        warnings: [],
       });
 
-      waitsForPromise(() => {
-        return composer.build().catch(r => {});
-      });
+      waitsForPromise(() =>
+        composer.build().catch(() => {})
+      );
 
       runs(() => {
         expect(composer.showError).toHaveBeenCalled();
@@ -133,9 +130,9 @@ describe('Composer', () => {
       initializeSpies('file.tex');
       builder.parseLogFile.andReturn(null);
 
-      waitsForPromise(() => {
-        return composer.build().catch(r => {});
-      });
+      waitsForPromise(() =>
+        composer.build().catch(() => {})
+      );
 
       runs(() => {
         expect(composer.showError).toHaveBeenCalled();
@@ -146,9 +143,9 @@ describe('Composer', () => {
       spyOn(atom.workspace, 'getActiveTextEditor').andReturn();
       spyOn(composer, 'getEditorDetails').andCallThrough();
 
-      waitsForPromise(() => {
-        return composer.build().catch(r => {});
-      });
+      waitsForPromise(() =>
+        composer.build().catch(() => {})
+      );
 
       runs(() => {
         expect(composer.getEditorDetails).toHaveBeenCalled();
@@ -159,13 +156,13 @@ describe('Composer', () => {
   describe('clean', () => {
     const extensions = ['.bar', '.baz', '.quux'];
 
-    function fakeFilePaths (filePath) {
+    function fakeFilePaths(filePath) {
       const filePathSansExtension = filePath.substring(0, filePath.lastIndexOf('.'));
       return extensions.map(ext => filePathSansExtension + ext);
     }
 
-    function initializeSpies (filePath) {
-      spyOn(composer, 'getEditorDetails').andReturn({filePath});
+    function initializeSpies(filePath) {
+      spyOn(composer, 'getEditorDetails').andReturn({ filePath });
       spyOn(composer, 'resolveRootFilePath').andReturn(filePath);
     }
 
@@ -180,11 +177,11 @@ describe('Composer', () => {
       initializeSpies(filePath);
 
       let candidatePaths;
-      waitsForPromise(() => {
-        return composer.clean().then(resolutions => {
+      waitsForPromise(() =>
+        composer.clean().then(resolutions => {
           candidatePaths = _.map(resolutions, 'filePath');
-        });
-      });
+        })
+      );
 
       runs(() => {
         expect(candidatePaths).toEqual(filesToDelete);
@@ -195,9 +192,9 @@ describe('Composer', () => {
       const filePath = 'foo.bar';
       initializeSpies(filePath, []);
 
-      waitsForPromise(() => {
-        return composer.clean().catch(r => {});
-      });
+      waitsForPromise(() =>
+        composer.clean().catch(() => {})
+      );
 
       runs(() => {
         expect(composer.resolveRootFilePath).not.toHaveBeenCalled();

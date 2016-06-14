@@ -26,6 +26,7 @@
     "babel/object-curly-spacing": [2, "always"],
     "babel/no-await-in-loop": 2,
 
-    "import/no-unresolved": [2, { "ignore": ["atom"] }]
+    "import/no-unresolved": [2, { "ignore": ["atom"] }],
+    "import/order": 2
   }
 }

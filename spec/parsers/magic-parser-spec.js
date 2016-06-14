@@ -24,9 +24,7 @@ describe('MagicParser', () => {
       const parser = new MagicParser(filePath);
       const result = parser.parse();
 
-      expect(result).toEqual({
-        'root': '../file.tex'
-      });
+      expect(result).toEqual({ root: '../file.tex' });
     });
 
     it('returns path to root file when file contains magic root comment when magic comment is not on the first line', () => {
@@ -34,9 +32,7 @@ describe('MagicParser', () => {
       const parser = new MagicParser(filePath);
       const result = parser.parse();
 
-      expect(result).toEqual({
-        'root': '../file.tex'
-      });
+      expect(result).toEqual({ root: '../file.tex' });
     });
 
     it('handles magic comments without optional whitespace', () => {
@@ -52,10 +48,7 @@ describe('MagicParser', () => {
       const parser = new MagicParser(filePath);
       const result = parser.parse();
 
-      expect(result).toEqual({
-        'root': '../file.tex',
-        'program': 'pdflatex'
-      });
+      expect(result).toEqual({ root: '../file.tex', program: 'pdflatex' });
     });
   });
 });

@@ -1,8 +1,8 @@
 'use babel';
 
-import helpers from './spec-helpers';
 import path from 'path';
 import Builder from '../lib/builder';
+import helpers from './spec-helpers';
 
 describe('Builder', () => {
   let builder, fixturesPath, filePath, logFilePath;
@@ -102,7 +102,7 @@ describe('Builder', () => {
 
   describe('getLatexEngineFromMagic', () => {
     it('detects program magic and outputs correct engine', () => {
-      const filePath = path.join(fixturesPath, 'magic-comments', 'latex-engine.tex');
+      filePath = path.join(fixturesPath, 'magic-comments', 'latex-engine.tex');
       expect(builder.getLatexEngineFromMagic(filePath)).toEqual('pdflatex');
     });
   });

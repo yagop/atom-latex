@@ -1,7 +1,7 @@
 'use babel';
 
-import helpers from '../spec-helpers';
 import path from 'path';
+import helpers from '../spec-helpers';
 import LatexmkBuilder from '../../lib/builders/latexmk';
 
 describe('LatexmkBuilder', () => {
@@ -22,7 +22,7 @@ describe('LatexmkBuilder', () => {
         '-pdf',
         '-file-line-error',
         '-synctex=1',
-        `"${filePath}"`
+        `"${filePath}"`,
       ];
       const args = builder.constructArgs(filePath);
 
@@ -71,9 +71,9 @@ describe('LatexmkBuilder', () => {
     let exitCode;
 
     it('successfully executes latexmk when given a valid TeX file', () => {
-      waitsForPromise(() => {
-        return builder.run(filePath).then(code => { exitCode = code; });
-      });
+      waitsForPromise(() =>
+        builder.run(filePath).then(code => { exitCode = code; })
+      );
 
       runs(() => {
         expect(exitCode).toBe(0);
@@ -83,9 +83,9 @@ describe('LatexmkBuilder', () => {
     it('successfully executes latexmk when given a file path containing spaces', () => {
       filePath = path.join(fixturesPath, 'filename with spaces.tex');
 
-      waitsForPromise(() => {
-        return builder.run(filePath).then(code => { exitCode = code; });
-      });
+      waitsForPromise(() =>
+        builder.run(filePath).then(code => { exitCode = code; })
+      );
 
       runs(() => {
         expect(exitCode).toBe(0);
@@ -95,9 +95,9 @@ describe('LatexmkBuilder', () => {
     it('fails to execute latexmk when given invalid arguments', () => {
       spyOn(builder, 'constructArgs').andReturn(['-invalid-argument']);
 
-      waitsForPromise(() => {
-        return builder.run(filePath).then(code => { exitCode = code; });
-      });
+      waitsForPromise(() =>
+        builder.run(filePath).then(code => { exitCode = code; })
+      );
 
       runs(() => {
         expect(exitCode).toBe(10);
@@ -114,9 +114,9 @@ describe('LatexmkBuilder', () => {
 
       spyOn(builder, 'constructArgs').andReturn(args);
 
-      waitsForPromise(() => {
-        return builder.run(filePath).then(code => { exitCode = code; });
-      });
+      waitsForPromise(() =>
+        builder.run(filePath).then(code => { exitCode = code; })
+      );
 
       runs(() => {
         expect(exitCode).toBe(11);
