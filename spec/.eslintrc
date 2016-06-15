@@ -3,4 +3,12 @@
     "atomtest": true,
     "jasmine": true,
   },
+  "rules": {
+    "max-len": [2, 100, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false,
+      "ignorePattern": "it\\s*\\(.*\\)"
+      }
+    ]
+  }
 }
