@@ -7,6 +7,7 @@ script_dir=$( cd $(dirname $0); pwd -P )
 export PATH="${script_dir}:${PATH}"
 
 source install-texlive
+source install-knitr
 
 # Grab and execute standard Atom package CI build script.
 curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh
