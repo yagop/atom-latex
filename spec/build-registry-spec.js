@@ -37,5 +37,10 @@ describe('BuilderRegistry', () => {
       spyOn(registry, 'getAllBuilders').andReturn(allBuilders)
       expect(() => { registry.getBuilder(filePath) }).toThrow()
     })
+
+    it('returns the Knitr builder when presented with an .Rnw file', () => {
+      const filePath = path.join('foo', 'bar.Rnw')
+      expect(registry.getBuilder(filePath).name).toEqual('KnitrBuilder')
+    })
   })
 })
